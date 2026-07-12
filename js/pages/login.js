@@ -28,7 +28,7 @@ export function render(container) {
         <button type="button" class="btn btn-ghost btn-sm btn-block" id="toggleServerCfg" style="margin-top:10px">⚙️ Atur alamat server</button>
         <div class="field hidden" id="serverCfgBox" style="margin-top:10px">
           <label for="gasUrlField">URL Backend (Apps Script /exec)</label>
-          <input id="gasUrlField" value="${escapeHtml(getGasUrl())}" placeholder="https://script.google.com/macros/s/AKfycbwWooKDfJlXHln9cEw2IMGQLTyGafsK9jrxE86tRIjwqbUdEi8UgceAfH0FB2wV_bIg/exec">
+          <input id="gasUrlField" value="${escapeHtml(getGasUrl())}" placeholder="https://script.google.com/macros/s/XXXX/exec">
           <button type="button" class="btn btn-ghost btn-sm" id="saveGasUrl" style="margin-top:8px">Simpan Alamat Server</button>
         </div>
       </form>
@@ -43,6 +43,16 @@ export function render(container) {
     setGasUrl(url);
     toast('Alamat server disimpan', 'success');
   });
+
+  // Diagnostik: kalau tadi sempat login lalu terlempar balik ke sini,
+  // tunjukkan alasannya (bukan cuma diam-diam kembali ke login).
+  try {
+    const lastErr = JSON.parse(sessionStorage.getItem('tirta_last_auth_error') || 'null');
+    if (lastErr) {
+      toast(`Terputus otomatis: [${lastErr.code}] ${lastErr.message} (saat memanggil "${lastErr.fn}")`, 'error');
+      sessionStorage.removeItem('tirta_last_auth_error');
+    }
+  } catch (e) {}
 
   const form = container.querySelector('#loginForm');
   form.addEventListener('submit', async (e) => {

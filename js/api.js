@@ -48,6 +48,7 @@ export async function api(fn, args = [], { requireAuth = true, retries = 1 } = {
     if (!json.ok) {
       if (['NO_TOKEN', 'INVALID_TOKEN', 'SESSION_EXPIRED'].includes(json.code)) {
         clearSession();
+        try { sessionStorage.setItem('tirta_last_auth_error', JSON.stringify({ fn, code: json.code, message: json.error, at: new Date().toISOString() })); } catch (e) {}
         location.hash = '#/login';
       }
       throw new ApiError(json.error || 'Terjadi kesalahan', json.code);
