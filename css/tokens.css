@@ -1,0 +1,72 @@
+/* ============================================================
+   TIRTA KENCANA — DESIGN TOKENS
+   Identitas visual dipertahankan (biru laut dalam + emas), tapi
+   dirapikan jadi token yang konsisten & mudah dipelihara.
+   ============================================================ */
+:root {
+  /* Warna brand */
+  --color-primary: #00509E;
+  --color-primary-light: #00A8E8;
+  --color-accent: #00D1FF;
+  --color-gold: #FFD700;
+  --color-danger: #ff4d6d;
+  --color-success: #00e5a0;
+  --color-warning: #ffd166;
+
+  /* Permukaan (dark, sesuai tema asli) */
+  --color-bg: #020f1f;
+  --color-bg-2: #041628;
+  --color-surface: rgba(0, 30, 60, 0.72);
+  --color-surface-2: rgba(0, 20, 50, 0.85);
+  --color-card: rgba(0, 40, 80, 0.55);
+  --color-border: rgba(0, 168, 232, 0.22);
+
+  /* Teks */
+  --color-text: #e0f4ff;
+  --color-text-muted: #7ec8e3;
+  --color-text-faint: #3a6a8a;
+
+  /* Tipografi */
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --fs-xs: 0.72rem;
+  --fs-sm: 0.82rem;
+  --fs-base: 0.92rem;
+  --fs-md: 1.05rem;
+  --fs-lg: 1.3rem;
+  --fs-xl: 1.75rem;
+
+  /* Spacing (skala 4px) */
+  --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px;
+  --sp-5: 20px; --sp-6: 24px; --sp-8: 32px;
+
+  /* Radius & shadow */
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --shadow-card: 0 4px 24px rgba(0, 80, 158, 0.22);
+  --shadow-elevated: 0 8px 40px rgba(0, 80, 158, 0.32);
+
+  /* Layout */
+  --header-h: 60px;
+  --nav-h: 64px;
+  --sidebar-w: 220px;
+  --content-max: 1280px;
+
+  /* Transisi */
+  --ease: cubic-bezier(.4,0,.2,1);
+}
+
+/* Mode terang opsional — sengaja tidak jadi default (aplikasi kasir dipakai
+   sering di ruangan gudang/mobil, tema gelap lebih nyaman di mata) */
+body.light {
+  --color-bg: #eef6fb;
+  --color-bg-2: #ffffff;
+  --color-surface: rgba(255, 255, 255, 0.85);
+  --color-surface-2: #ffffff;
+  --color-card: #ffffff;
+  --color-border: rgba(0, 80, 158, 0.15);
+  --color-text: #082a45;
+  --color-text-muted: #3d6a8a;
+  --color-text-faint: #7b9cb4;
+}

@@ -1,0 +1,100 @@
+/* ============================================================
+   LAYOUT — mobile-first, lalu diperluas untuk tablet (>=768px)
+   dan desktop (>=1024px). Struktur: header atas, konten tengah,
+   navigasi bawah (HP) yang berubah jadi sidebar kiri (tablet/web).
+   ============================================================ */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--font-sans);
+  background: radial-gradient(ellipse at 20% 10%, #003366 0%, var(--color-bg) 55%, #001a33 100%);
+  background-attachment: fixed;
+  color: var(--color-text);
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+button, input, select, textarea { font-family: inherit; }
+a { color: var(--color-primary-light); }
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* ---- Header ---- */
+.app-header {
+  height: var(--header-h);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 var(--sp-4);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 60%, var(--color-accent) 100%);
+  color: #fff;
+  position: sticky; top: 0; z-index: 20;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+}
+.app-header .brand { font-weight: 800; font-size: var(--fs-md); display: flex; gap: 4px; }
+.app-header .brand .gold { color: var(--color-gold); }
+.app-header .user-chip { display: flex; align-items: center; gap: var(--sp-2); font-size: var(--fs-xs); }
+.app-header .avatar {
+  width: 30px; height: 30px; border-radius: 50%;
+  background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: var(--fs-xs);
+}
+
+/* ---- Content area ---- */
+.app-body { flex: 1; display: flex; min-height: 0; }
+.app-main {
+  flex: 1; min-width: 0;
+  padding: var(--sp-4) var(--sp-4) calc(var(--nav-h) + var(--sp-6));
+  max-width: var(--content-max); margin: 0 auto; width: 100%;
+}
+
+/* ---- Nav: bottom tab bar di HP ---- */
+.app-nav {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 20;
+  display: flex; justify-content: space-around;
+  background: var(--color-surface-2);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid var(--color-border);
+  padding: var(--sp-1) 0 max(var(--sp-1), env(safe-area-inset-bottom));
+  height: var(--nav-h);
+}
+.app-nav a {
+  flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 2px; text-decoration: none; color: var(--color-text-muted);
+  font-size: 0.62rem; font-weight: 600; padding: var(--sp-1) 0;
+  transition: color .15s var(--ease);
+}
+.app-nav a .icon { font-size: 1.15rem; line-height: 1; }
+.app-nav a.active { color: var(--color-accent); }
+
+/* ---- Tablet & Desktop: sidebar kiri, header lebih lega ---- */
+@media (min-width: 768px) {
+  .app-header { padding: 0 var(--sp-6); height: 68px; }
+  .app-body { padding-top: 0; }
+  .app-nav {
+    position: sticky; top: 68px; bottom: auto; left: 0;
+    flex-direction: column; justify-content: flex-start; align-items: stretch;
+    width: var(--sidebar-w); height: calc(100vh - 68px); height: calc(100dvh - 68px);
+    border-top: none; border-right: 1px solid var(--color-border);
+    padding: var(--sp-4) var(--sp-2);
+    gap: var(--sp-1);
+  }
+  .app-nav a { flex-direction: row; justify-content: flex-start; gap: var(--sp-3); font-size: var(--fs-sm); padding: var(--sp-3) var(--sp-3); border-radius: var(--radius-sm); }
+  .app-nav a .icon { font-size: 1.1rem; }
+  .app-nav a.active { background: rgba(0, 209, 255, 0.12); color: var(--color-accent); }
+  .app-main { padding: var(--sp-6) var(--sp-8); }
+}
+@media (min-width: 1024px) {
+  .app-main { padding: var(--sp-8) var(--sp-8) var(--sp-8) calc(var(--sp-8) + var(--sp-4)); }
+}
+
+/* ---- Grid responsif generik dipakai di halaman-halaman ---- */
+.grid-cards { display: grid; grid-template-columns: 1fr; gap: var(--sp-4); }
+@media (min-width: 640px) { .grid-cards.cols-2 { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 900px) { .grid-cards.cols-3 { grid-template-columns: repeat(3, 1fr); } .grid-cards.cols-4 { grid-template-columns: repeat(4, 1fr); } }
+
+.hidden { display: none !important; }
+.center-screen { min-height: 100vh; min-height: 100dvh; display: flex; align-items: center; justify-content: center; padding: var(--sp-4); }
