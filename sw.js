@@ -7,7 +7,7 @@
 // Setiap request ke domain backend (script.google.com) SENGAJA
 // dilewati (network only) supaya data selalu fresh dari server.
 // ============================================================
-const CACHE_NAME = 'tirta-shell-v1';
+const CACHE_NAME = 'tirta-shell-v2';
 const SHELL_FILES = [
   './index.html', './manifest.json',
   './css/tokens.css', './css/layout.css', './css/components.css',
@@ -15,7 +15,9 @@ const SHELL_FILES = [
   './js/session.js', './js/state.js', './js/utils.js',
   './js/pages/login.js', './js/pages/dashboard.js', './js/pages/kasir.js',
   './js/pages/riwayat.js', './js/pages/produk.js', './js/pages/pelanggan.js',
-  './js/pages/pengaturan.js',
+  './js/pages/pengaturan.js', './js/pages/setoran.js', './js/pages/rekapsetoran.js',
+  './js/pages/rekap.js', './js/pages/grafik.js', './js/pages/piutang.js',
+  './js/pages/inputbarang.js', './js/pages/rekapinput.js', './js/pages/stockbarang.js',
 ];
 
 self.addEventListener('install', (event) => {
